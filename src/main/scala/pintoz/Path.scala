@@ -26,4 +26,35 @@ object Path {
   def polygon(p0: Point, ps: Point*) =
     polyline(p0, ps:_*).closed
 
+  def coords(p: Point) = s"${p.x} ${p.y}"
+
+  implicit val isRender = new Render[Path] {
+    def render(path: Path) = {
+      val desc = path.segments.map {
+        case LineTo (d)         => s"L ${coords(d)}"
+        case QuadTo (d, c)      => s"Q ${coords(d)}"
+        case CubicTo(d, c1, c2) => s"C ${coords(d)}"
+        case ArcTo  (d)         => "L"
+        case Close => "Z"
+      }.mkString(s"M ${path.start} ", " ", "")
+      <path d={desc}></path>
+    }
+  }
+
+  implicit val isMovable = new Movable[Path] {
+    def moveBy(path: Path, dp: Point) = path match {
+      case Path(p0, ss) =>
+        val movedSegments = ss.map {
+          case LineTo (d)         => LineTo (d + dp)
+          case QuadTo (d, c)      => QuadTo (d + dp, c + dp)
+          case CubicTo(d, c1, c2) => CubicTo(d + dp, c1 + dp, c2 + dp)
+          case ArcTo  (d)         => ArcTo  (d + dp)
+          case Close              => Close
+        }
+        Path(p0 + dp, movedSegments)
+    }
+  }
+
+
 }
+

@@ -90,5 +90,10 @@ object Point {
   /** Point (1, 1) in the given grid size. */
   def unitary(implicit grid: Length) = new Point(grid, grid)
 
+
+  implicit val pointIsMovable = new Movable[Point] {
+    def moveBy(p: Point, dp: Point) = p + dp
+  }
+
 }
 

@@ -1,4 +1,4 @@
-package pintoz
+package pinta
 
 object DSL {
 

@@ -1,4 +1,4 @@
-package pintoz
+package pinta
 
 sealed trait PathSegment
 final case class LineTo (dest: Point) extends PathSegment

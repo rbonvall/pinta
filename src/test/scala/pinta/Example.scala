@@ -1,4 +1,4 @@
-package pintoz
+package pinta
 
 import org.scalatest.{FunSpec, Matchers}
 

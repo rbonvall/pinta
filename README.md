@@ -1,1 +1,1 @@
-Pinto ist nicht TikZ. Ohne Zweifel.
+Pinta ist nicht TikZ, amigos.

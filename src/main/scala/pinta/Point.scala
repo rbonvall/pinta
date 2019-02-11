@@ -1,4 +1,4 @@
-package pintoz
+package pinta
 
 import squants.space.{Length, Angle, LengthUnit, Radians}
 

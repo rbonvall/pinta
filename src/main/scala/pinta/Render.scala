@@ -1,4 +1,4 @@
-package pintoz
+package pinta
 
 import scala.xml.Elem
 import simulacrum._

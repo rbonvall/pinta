@@ -1,4 +1,4 @@
-package pintoz
+package pinta
 
 final case class Segment(from: Point, to: Point) {
   def length = from distTo to

@@ -16,6 +16,6 @@ resolvers += Resolver.sonatypeRepo("releases")
 addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.8")
 addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
 
-wartremoverErrors ++= Warts.unsafe
+//wartremoverErrors ++= Warts.unsafe
 Compile / console / scalacOptions :=
   (console / scalacOptions).value.filterNot(_ contains("wartremover"))

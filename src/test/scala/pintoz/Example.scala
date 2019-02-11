@@ -7,7 +7,6 @@ class Example extends FunSpec with Matchers {
   describe("DSL") {
     it("does stuff") {
 
-      import pintoz.{Point => P}
       import squants.space.LengthConversions._
       import DSL._
 
@@ -15,8 +14,10 @@ class Example extends FunSpec with Matchers {
 
       (P(1, 1) |- P(3, 4)) shouldBe Path(
         P(1, 1),
-        LineTo(P(1, 4)),
-        LineTo(P(3, 4)),
+        Seq(
+          LineTo(P(1, 4)),
+          LineTo(P(3, 4)),
+        )
       )
 
 

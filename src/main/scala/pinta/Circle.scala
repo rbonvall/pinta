@@ -8,15 +8,13 @@ case class Circle(center: Point, radius: Length) {
 
 object Circle {
 
-  implicit val isRender = new Render[Circle] {
-    def render(c: Circle) = c match {
-      case Circle(Point(x, y), r) =>
-        <circ cx={x.toString} cy={y.toString} r={r.toString}></circ>
-    }
-
+  def fromDiameter(p1: Point, p2: Point): Circle = {
+    val center = (p1 + p2) / 2.0
+    val radius = (p2 - p1).magnitude / 2.0
+    Circle(center, radius)
   }
 
-  implicit val circleIsMovable = new Movable[Circle] {
+  implicit val isMovable = new Movable[Circle] {
     def moveBy(circle: Circle, dp: Point) = circle match {
       case Circle(c, r) => Circle(c + dp, r)
     }

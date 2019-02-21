@@ -7,6 +7,14 @@ final case class Segment(from: Point, to: Point) {
   def mid = (from + to) * 0.5
   def isVertical   = from.x == to.x
   def isHorizontal = from.y == to.y
+}
 
+object Segment {
+
+  implicit val isMovable = new Movable[Segment] {
+    def moveBy(segment: Segment, dp: Point) = segment match {
+      case Segment(from, to) => Segment(from + dp, to + dp)
+    }
+  }
 
 }
